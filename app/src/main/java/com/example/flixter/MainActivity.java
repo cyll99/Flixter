@@ -46,51 +46,34 @@ public class MainActivity extends AppCompatActivity {
 
         // set a layout manager on the reclerview
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
-//
-//        AsyncHttpClient client = new AsyncHttpClient();
-//        client.get(NOW_PLAYING_URL, new JsonHttpResponseHandler() {
-//            @Override
-//            public void onSuccess(int statusCode, Headers headers, JSON json) {
-        Log.d(TAG, "onSuccess");
-//                JSONObject jsonObject = json.jsonObject;
-//                try {
-//                    JSONArray results = jsonObject.getJSONArray("results");
-//                    Log.i(TAG, "Results" + results.toString());
-//                    movies.addAll(Movie.fromJsonArray(results));
-//                    movieAdapter.notifyDataSetChanged();
-//                    Log.i(TAG, "movies: "+ movies.size());
-//                } catch (JSONException e) {
-//                    Log.e(TAG, "Hit json exception", e);
-//                    e.printStackTrace();
-//                }
 
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(NOW_PLAYING_URL, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                Log.d(TAG, "onSuccess");
+                JSONObject jsonObject = json.jsonObject;
+                try {
+                    JSONArray results = jsonObject.getJSONArray("results");
+                    Log.i(TAG, "Results" + results.toString());
+                    movies.addAll(Movie.fromJsonArray(results));
+                    movieAdapter.notifyDataSetChanged();
+                    Log.i(TAG, "movies: " + movies.size());
+                } catch (JSONException e) {
+                    Log.e(TAG, "Hit json exception", e);
+                    e.printStackTrace();
+                }
+            }
 
-//            @Override
-//            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-//                Log.d(TAG,"onFailure");
-//
-//            }
-//        });
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable
+                    throwable) {
+                Log.d(TAG, "onFailure");
 
-        StringBuilder responseStrBuilder = new StringBuilder();
+            }
 
-        try {
-            InputStream inputStream = getAssets().open("movies.txt");
-            BufferedReader streamReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+        });
 
-            String inputStr;
-            while ((inputStr = streamReader.readLine()) != null)
-                responseStrBuilder.append(inputStr);
-
-            JSONObject jsonObject = new JSONObject(responseStrBuilder.toString());
-            JSONArray results = jsonObject.getJSONArray("results");
-
-            movies.addAll(Movie.fromJsonArray(results));
-            movieAdapter.notifyDataSetChanged();
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-            Log.i(TAG, "onCreate: " + responseStrBuilder.toString());
-        }
     }
 
 
