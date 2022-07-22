@@ -1,20 +1,26 @@
 package com.example.flixter.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.flixter.DetailActivity;
 import com.example.flixter.R;
 import com.example.flixter.models.Movie;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -96,14 +102,16 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         TextView tvTtile;
         TextView tvOverview;
         ImageView ivPoster;
+        RelativeLayout container;
 
 
         public ViewHolder2(@NonNull View itemView) {
             super(itemView);
 
-            tvTtile = itemView.findViewById(R.id.tvTitle);
-            tvOverview = itemView.findViewById(R.id.tvOverview);
+            tvTtile = itemView.findViewById(R.id.tvTitleD);
+            tvOverview = itemView.findViewById(R.id.tvOverviewD);
             ivPoster = itemView.findViewById(R.id.ivPoster);
+            container = itemView.findViewById(R.id.container);
         }
 
 
@@ -125,17 +133,35 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             Glide.with(context).load(ImageUrl)
                     .placeholder(R.drawable.place)
                     .into(ivPoster);
+
+            // 1 register the clisk listener on the whor row
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 2 Navigate on new activity on tap
+
+//                    Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
+                    Intent i =  new Intent(context, DetailActivity.class);
+                    i.putExtra("movie", Parcels.wrap(movie));
+
+                    context.startActivity(i);
+
+                }
+            });
+
         }
     }
 
     public class ViewHolder1 extends RecyclerView.ViewHolder{
 
         ImageView bakdrop;
+        ConstraintLayout container;
 
 
         public ViewHolder1(@NonNull View itemView) {
             super(itemView);
             bakdrop = itemView.findViewById(R.id.backdrop);
+            container = itemView.findViewById(R.id.container);
 
         }
 
@@ -150,6 +176,19 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             Glide.with(context).load(ImageUrl)
                     .placeholder(R.drawable.place)
                     .into(bakdrop);
+            // 1 register the clisk listener on the whor row
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 2 Navigate on new activity on tap
+
+//                    Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
+                    Intent i =  new Intent(context, DetailActivity.class);
+                    i.putExtra("movie", Parcels.wrap(movie));
+
+                    context.startActivity(i);
+                }
+            });
         }
     }
 }
