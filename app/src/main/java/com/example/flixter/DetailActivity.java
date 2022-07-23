@@ -78,12 +78,19 @@ public class DetailActivity extends YouTubeBaseActivity {
     }
 
     private void initializeYoutube(final String youtubeKey) {
+        Movie movie = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
+
         youTubePlayerView.initialize("YOUTUBE_API_KEY", new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 Log.d("detail activity", " on succes");
                 // do any work here to cue video, play video, etc.
-                youTubePlayer.cueVideo(youtubeKey);
+                if(movie.getVoteAv() > 5){
+                    youTubePlayer.loadVideo(youtubeKey);
+                }else{
+                    youTubePlayer.cueVideo(youtubeKey);
+
+                }
             }
 
             @Override

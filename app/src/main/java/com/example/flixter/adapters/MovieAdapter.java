@@ -81,7 +81,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     public boolean getItem(int position){
-        return (movies.get(position).getVoteAv() > 5);
+        return (movies.get(position).getVoteAv() > 7);
     }
 
     @Override
