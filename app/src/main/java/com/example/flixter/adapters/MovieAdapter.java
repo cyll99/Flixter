@@ -1,5 +1,6 @@
 package com.example.flixter.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -13,10 +14,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.flixter.DetailActivity;
+import com.example.flixter.MainActivity;
 import com.example.flixter.R;
 import com.example.flixter.models.Movie;
 
@@ -185,8 +188,10 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 //                    Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
                     Intent i =  new Intent(context, DetailActivity.class);
                     i.putExtra("movie", Parcels.wrap(movie));
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation((Activity) context, bakdrop, "profile");
 
-                    context.startActivity(i);
+                    context.startActivity(i, options.toBundle());
                 }
             });
         }
