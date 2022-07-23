@@ -18,6 +18,7 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.flixter.DetailActivity;
 import com.example.flixter.MainActivity;
 import com.example.flixter.R;
@@ -135,6 +136,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             Glide.with(context).load(ImageUrl)
                     .placeholder(R.drawable.place)
+                    .transform(new RoundedCorners(100))
                     .into(ivPoster);
 
             // 1 register the clisk listener on the whor row
@@ -158,7 +160,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public class ViewHolder1 extends RecyclerView.ViewHolder{
 
         ImageView bakdrop;
-        ConstraintLayout container;
+        RelativeLayout container;
 
 
         public ViewHolder1(@NonNull View itemView) {
@@ -178,6 +180,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             Glide.with(context).load(ImageUrl)
                     .placeholder(R.drawable.place)
+                    .transform(new RoundedCorners(100))
                     .into(bakdrop);
             // 1 register the clisk listener on the whor row
             container.setOnClickListener(new View.OnClickListener() {
