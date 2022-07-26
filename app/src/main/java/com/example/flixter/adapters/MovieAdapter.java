@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -22,6 +23,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.flixter.DetailActivity;
 import com.example.flixter.MainActivity;
 import com.example.flixter.R;
+import com.example.flixter.databinding.HighAvMovItemBinding;
+import com.example.flixter.databinding.ItemMovieBinding;
 import com.example.flixter.models.Movie;
 
 import org.parceler.Parcels;
@@ -47,10 +50,10 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         if(viewType == 1){
-            View pop = inflater.inflate(R.layout.high_av_mov_item, parent, false);
+            HighAvMovItemBinding pop = DataBindingUtil.inflate(inflater,R.layout.high_av_mov_item, parent, false);
             viewHolder = new ViewHolder1(pop);
         }else{
-            View less_pop = inflater.inflate(R.layout.item_movie, parent, false);
+            ItemMovieBinding less_pop = DataBindingUtil.inflate(inflater,R.layout.item_movie, parent, false);
             viewHolder = new ViewHolder2(less_pop);
         }
 
@@ -109,13 +112,13 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         RelativeLayout container;
 
 
-        public ViewHolder2(@NonNull View itemView) {
-            super(itemView);
+        public ViewHolder2(@NonNull ItemMovieBinding binding) {
+            super(binding.getRoot());
 
-            tvTtile = itemView.findViewById(R.id.tvTitleD);
-            tvOverview = itemView.findViewById(R.id.tvOverviewD);
-            ivPoster = itemView.findViewById(R.id.ivPoster);
-            container = itemView.findViewById(R.id.container);
+            tvTtile = binding.tvTitleD;
+            tvOverview = binding.tvOverviewD;
+            ivPoster = binding.ivPoster;
+            container = binding.container;
         }
 
 
@@ -163,10 +166,10 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         RelativeLayout container;
 
 
-        public ViewHolder1(@NonNull View itemView) {
-            super(itemView);
-            bakdrop = itemView.findViewById(R.id.backdrop);
-            container = itemView.findViewById(R.id.container);
+        public ViewHolder1(@NonNull HighAvMovItemBinding binding) {
+            super(binding.getRoot());
+            bakdrop = binding.backdrop;
+            container = binding.container;
 
         }
 

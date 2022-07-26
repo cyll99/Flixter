@@ -1,6 +1,7 @@
 package com.example.flixter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.example.flixter.databinding.ActivityDetailBinding;
 import com.example.flixter.models.Movie;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -30,16 +32,18 @@ public class DetailActivity extends YouTubeBaseActivity {
     RatingBar ratingBar;
     YouTubePlayerView youTubePlayerView;
 
+    private ActivityDetailBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
-        tvTitle = findViewById(R.id.tvTitleD);
-        tvOverview = findViewById(R.id.tvOverviewD);
-        ratingBar = findViewById(R.id.ratingBar);
-        youTubePlayerView = findViewById(R.id.player);
+        tvTitle = binding.tvTitleD;
+        tvOverview = binding.tvOverviewD;
+        ratingBar = binding.ratingBar;
+        youTubePlayerView = binding.player;
 
 
 
