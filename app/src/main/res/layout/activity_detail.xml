@@ -40,8 +40,10 @@
         <RatingBar
             android:id="@+id/ratingBar"
             style="@style/customRatingBar"
-            android:progressBackgroundTint="@color/green_light25"
-            android:layout_width="156dp"
+            android:progressBackgroundTint="@color/white"
+            android:progressTint="@color/green_light25"
+
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:isIndicator="true"
             android:numStars="10"
