@@ -12,6 +12,8 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="0dp"
+
     android:background="@color/black"
     android:id="@+id/container"
 
@@ -23,10 +25,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        tools:srcCompat="@tools:sample/avatars"
-        app:lessPop="@{context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ? movie.backdropPath:movie.posterPath}"/>
+        android:layout_marginTop="-150dp"
+
+
+
+        app:lessPop="@{context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ? movie.backdropPath:movie.posterPath}"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tvTitleD"
@@ -51,6 +55,7 @@
         android:layout_marginEnd="-5dp"
         android:layout_toEndOf="@+id/ivPoster"
         android:text='@{movie.getOverview()}'
+        android:maxLines="7"
         android:textColor="@color/white" />
 
 

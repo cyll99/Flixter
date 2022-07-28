@@ -207,9 +207,12 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         @BindingAdapter({"lessPop"})
         public static void loadImage(ImageView view, String url) {
 //            Picasso.get().load(url).into(view);
-            Glide.with(view.getContext())                         // image
+            Glide.with(view.getContext())// image
                     .load(url)
+                    .centerCrop()
                     .placeholder(R.drawable.place)
+
+                    .transform(new RoundedCorners(50))
                     .into(view);
         }
     }
@@ -221,6 +224,8 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             Glide.with(view.getContext())                         // image
                     .load(url)
                     .placeholder(R.drawable.place)
+                    .transform(new RoundedCorners(20))
+
                     .into(view);
         }
     }

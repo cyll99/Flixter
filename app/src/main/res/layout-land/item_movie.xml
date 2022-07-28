@@ -11,6 +11,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     android:id="@+id/container"
     android:background="@color/black">
 
@@ -21,7 +22,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="-150dp"
         app:lessPop="@{context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ? movie.backdropPath:movie.posterPath}"
 
     tools:srcCompat="@tools:sample/avatars" />
