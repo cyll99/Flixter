@@ -48,9 +48,10 @@ public class DetailActivity extends YouTubeBaseActivity {
 
 
         Movie movie = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
-        tvTitle.setText(movie.getTitle());
-        tvOverview.setText(movie.getOverview());
-        ratingBar.setRating((float)movie.getRating());
+//        tvTitle.setText(movie.getTitle());
+//        tvOverview.setText(movie.getOverview());
+//        ratingBar.setRating((float)movie.getRating());
+        binding.setMovie(movie);
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(String.format(VIDEO_URL, movie.getMovieId()), new JsonHttpResponseHandler() {

@@ -23,6 +23,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.flixter.DetailActivity;
 import com.example.flixter.MainActivity;
 import com.example.flixter.R;
+import com.example.flixter.databinding.ActivityMainBinding;
 import com.example.flixter.databinding.HighAvMovItemBinding;
 import com.example.flixter.databinding.ItemMovieBinding;
 import com.example.flixter.models.Movie;
@@ -84,7 +85,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     public boolean getItem(int position){
-        return (movies.get(position).getVoteAv() > 5);
+        return (movies.get(position).getVoteAv() > 7);
     }
 
     @Override
@@ -105,6 +106,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
     public class ViewHolder2 extends RecyclerView.ViewHolder{
+        ActivityMainBinding binding = DataBindingUtil.setContentView((Activity) context, R.layout.item_movie);
 
         TextView tvTtile;
         TextView tvOverview;
@@ -115,17 +117,26 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         public ViewHolder2(@NonNull ItemMovieBinding binding) {
             super(binding.getRoot());
 
+
+
             tvTtile = binding.tvTitleD;
             tvOverview = binding.tvOverviewD;
             ivPoster = binding.ivPoster;
             container = binding.container;
+
         }
 
 
         public void bind(Movie movie) {
-            tvTtile.setText(movie.getTitle());
-            tvOverview.setText(movie.getOverview());
+
+
+//            tvTtile.setText(movie.getTitle());
+//            tvOverview.setText(movie.getOverview());
+            binding.setMovie(movie);
+
             String ImageUrl;
+
+
 
             // if phone is in landscape imageUrl = backdrop image
             if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){

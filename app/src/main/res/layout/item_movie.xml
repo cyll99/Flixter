@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="user" type="com.example.flixter.models.Movie"/>
+        <variable name="movie" type="com.example.flixter.models.Movie"/>
     </data>
 
 <RelativeLayout
@@ -32,7 +32,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/ivPoster"
-        android:text="Fast  Furious Pressents: Hobbs Shaw"
+        android:text='@{movie.getTitle()}'
         android:textColor="@color/green_light24"
         android:textSize="24sp"
         app:fontFamily="sans-serif-black" />
@@ -47,7 +47,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="-5dp"
         android:layout_toEndOf="@+id/ivPoster"
-        android:text="Fast  Furious Pressents: Hobbs Shaw Fast  Furious Pressents: Hobbs Shaw Fast  Furious Pressents: Hobbs Shaw"
+        android:text='@{movie.getOverview()}'
         android:textColor="@color/white" />
 
 

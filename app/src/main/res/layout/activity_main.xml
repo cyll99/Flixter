@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="user" type="com.example.flixter.models.Movie"/>
+        <variable name="movie" type="com.example.flixter.models.Movie"/>
     </data>
 <RelativeLayout
 
