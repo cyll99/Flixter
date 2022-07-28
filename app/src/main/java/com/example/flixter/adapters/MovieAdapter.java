@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +16,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.flixter.DetailActivity;
 import com.example.flixter.MainActivity;
 import com.example.flixter.R;
@@ -106,7 +112,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
     public class ViewHolder2 extends RecyclerView.ViewHolder{
-        ActivityMainBinding binding = DataBindingUtil.setContentView((Activity) context, R.layout.item_movie);
+        ItemMovieBinding binding;
 
         TextView tvTtile;
         TextView tvOverview;
@@ -114,8 +120,10 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         RelativeLayout container;
 
 
-        public ViewHolder2(@NonNull ItemMovieBinding binding) {
-            super(binding.getRoot());
+        public ViewHolder2(@NonNull ItemMovieBinding bindinga) {
+            super(bindinga.getRoot());
+
+            binding = bindinga;
 
 
 
@@ -130,28 +138,11 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         public void bind(Movie movie) {
 
 
-//            tvTtile.setText(movie.getTitle());
-//            tvOverview.setText(movie.getOverview());
             binding.setMovie(movie);
 
-            String ImageUrl;
 
 
-
-            // if phone is in landscape imageUrl = backdrop image
-            if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-                ImageUrl = movie.getBackdropPath();
-            }else{
-                // else imageUrl = post image
-                ImageUrl = movie.getPosterPath();
-
-            }
-
-
-            Glide.with(context).load(ImageUrl)
-                    .placeholder(R.drawable.place)
-                    .transform(new RoundedCorners(100))
-                    .into(ivPoster);
+//
 
             // 1 register the clisk listener on the whor row
             container.setOnClickListener(new View.OnClickListener() {
@@ -159,7 +150,6 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 public void onClick(View view) {
                     // 2 Navigate on new activity on tap
 
-//                    Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
                     Intent i =  new Intent(context, DetailActivity.class);
                     i.putExtra("movie", Parcels.wrap(movie));
 
@@ -172,13 +162,16 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
     public class ViewHolder1 extends RecyclerView.ViewHolder{
+        HighAvMovItemBinding binding;
 
         ImageView bakdrop;
         RelativeLayout container;
 
 
-        public ViewHolder1(@NonNull HighAvMovItemBinding binding) {
-            super(binding.getRoot());
+        public ViewHolder1(@NonNull HighAvMovItemBinding bindinga) {
+            super(bindinga.getRoot());
+            binding = bindinga;
+
             bakdrop = binding.backdrop;
             container = binding.container;
 
@@ -186,16 +179,12 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
         public void bind(Movie movie) {
-            String ImageUrl;
-
-            ImageUrl = movie.getBackdropPath();
 
 
 
-            Glide.with(context).load(ImageUrl)
-                    .placeholder(R.drawable.place)
-                    .transform(new RoundedCorners(100))
-                    .into(bakdrop);
+
+
+            binding.setMovie(movie);
             // 1 register the clisk listener on the whor row
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -211,6 +200,28 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                     context.startActivity(i, options.toBundle());
                 }
             });
+        }
+    }
+
+    public static class BindingAdapterUtils {
+        @BindingAdapter({"lessPop"})
+        public static void loadImage(ImageView view, String url) {
+//            Picasso.get().load(url).into(view);
+            Glide.with(view.getContext())                         // image
+                    .load(url)
+                    .placeholder(R.drawable.place)
+                    .into(view);
+        }
+    }
+
+    public static class BindingAdapterUtils1 {
+        @BindingAdapter({"MoreP"})
+        public static void loadImage(ImageView view, String url) {
+//            Picasso.get().load(url).into(view);
+            Glide.with(view.getContext())                         // image
+                    .load(url)
+                    .placeholder(R.drawable.place)
+                    .into(view);
         }
     }
 }

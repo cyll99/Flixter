@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable name="movie" type="com.example.flixter.models.Movie"/>
+        <import type="android.content.res.Configuration"/>
+
     </data>
 
 <RelativeLayout
@@ -23,7 +25,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        app:lessPop="@{context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ? movie.backdropPath:movie.posterPath}"/>
 
     <TextView
         android:id="@+id/tvTitleD"

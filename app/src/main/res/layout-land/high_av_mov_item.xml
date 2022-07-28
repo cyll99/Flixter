@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="user" type="com.example.flixter.models.Movie"/>
+        <variable name="movie" type="com.example.flixter.models.Movie"/>
+        <import type="android.content.res.Configuration"/>
     </data>
 <RelativeLayout
 
@@ -25,6 +26,8 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="-4dp"
         android:layout_marginTop="10dp"
+        app:MoreP="@{movie.backdropPath}"
+
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
