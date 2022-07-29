@@ -91,7 +91,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     public boolean getItem(int position){
-        return (movies.get(position).getVoteAv() > 7);
+        return (movies.get(position).getVoteAv() > 5);
     }
 
     @Override
@@ -221,7 +221,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             Glide.with(view.getContext())                         // image
                     .load(url)
                     .placeholder(R.drawable.place)
-                    .transform(new RoundedCorners(50))
+                    .transform(new RoundedCorners(70))
 
                     .into(view);
         }
