@@ -11,6 +11,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="-150dp"
 
     android:id="@+id/container"
     android:background="@color/black">
@@ -37,7 +38,7 @@
         android:textColor="@color/green_light24"
 
         android:layout_toEndOf="@+id/ivPoster"
-        android:text="Fast  Furious Pressents: Hobbs Shaw"
+        android:text='@{movie.getTitle()}'
         android:textSize="24sp"
         app:fontFamily="sans-serif-black" />
 
@@ -50,7 +51,7 @@
         android:layout_toEndOf="@+id/ivPoster"
         android:layout_marginTop="5dp"
         android:textColor="@color/white"
-    android:text="Fast  Furious Pressents: Hobbs Shaw Fast  Furious Pressents: Hobbs Shaw Fast  Furious Pressents: Hobbs Shaw"
+        android:text='@{movie.getOverview()}'
         />
 
 </RelativeLayout>
