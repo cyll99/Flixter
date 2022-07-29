@@ -191,7 +191,6 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 public void onClick(View view) {
                     // 2 Navigate on new activity on tap
 
-//                    Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
                     Intent i =  new Intent(context, DetailActivity.class);
                     i.putExtra("movie", Parcels.wrap(movie));
                     ActivityOptionsCompat options = ActivityOptionsCompat.
@@ -206,7 +205,6 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public static class BindingAdapterUtils {
         @BindingAdapter({"lessPop"})
         public static void loadImage(ImageView view, String url) {
-//            Picasso.get().load(url).into(view);
             Glide.with(view.getContext())// image
                     .load(url)
                     .centerCrop()
@@ -220,7 +218,6 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public static class BindingAdapterUtils1 {
         @BindingAdapter({"MoreP"})
         public static void loadImage(ImageView view, String url) {
-//            Picasso.get().load(url).into(view);
             Glide.with(view.getContext())                         // image
                     .load(url)
                     .placeholder(R.drawable.place)
