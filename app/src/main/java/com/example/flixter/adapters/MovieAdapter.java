@@ -221,7 +221,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             Glide.with(view.getContext())                         // image
                     .load(url)
                     .placeholder(R.drawable.place)
-                    .transform(new RoundedCorners(20))
+                    .transform(new RoundedCorners(50))
 
                     .into(view);
         }
