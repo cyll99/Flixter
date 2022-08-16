@@ -7,6 +7,8 @@
         <variable
             name="movie"
             type="com.example.flixter.models.Movie"/>
+        <import type="android.content.res.Configuration"/>
+
     </data>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -49,7 +51,7 @@
             android:numStars="10"
             android:layout_margin="5dp"
             android:layout_below="@+id/tvTitleD"
-            android:rating="8.5" />
+            android:rating="@{(float)movie.rating}" />
 
         <TextView
             android:id="@+id/tvOverviewD"
